@@ -22,6 +22,40 @@ namespace Desktop
         public Registration()
         {
             InitializeComponent();
+            Manager.window = this;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(Validator.ValidateName(Name.Text) == false)
+            {
+                MessageBox.Show("Not valid name");
+            }
+            if(Validator.ValidateEmail(RegisterEmail.Text) == false)
+            {
+                MessageBox.Show("Not valid name");
+            }
+            if(Validator.ValidatePassword(RegisterPassword.Password) == false)
+            {
+                MessageBox.Show("Not valid password");
+            }
+            if(RegisterPassword.Password != RegisterPasswordConfirm.Password)
+            {
+                MessageBox.Show("Passwords doesn't match");
+            }
+            else
+            {
+                var MainEmptyWindow = new MainEmpty();
+                MainEmptyWindow.Show();
+                this.Close();
+            }
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            var LoginWindow = new Log_In();
+            LoginWindow.Show();
+            this.Close();
         }
     }
 }

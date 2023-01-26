@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Desktop"
         mc:Ignorable="d"
-        Title="Log_In" Height="600" Width="800">
+        Title="Log_In" Height="600" Width="800" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition>
@@ -36,11 +36,11 @@
                 <Label Content="Почта"
                        FontSize="20"
                        FontFamily="Actor"/>
-                <TextBox Width="326"
+                <TextBox x:Name="Email" Width="326"
                          VerticalAlignment="Bottom"
                          BorderBrush="#FFDFDFDF"
                          HorizontalAlignment="Left"
-                         BorderThickness="0,0,0,1" />
+                         BorderThickness="0,0,0,1"/>
             </WrapPanel>
             <WrapPanel Margin="0 10 0 0" 
                        Orientation="Vertical"
@@ -50,7 +50,7 @@
                 <Label Content="Пароль"
                        FontSize="20"
                        FontFamily="Actor"/>
-                <PasswordBox  Margin="0 0 0 10"
+                <PasswordBox x:Name="Password"  Margin="0 0 0 10"
                               Width="326"
                               VerticalAlignment="Bottom" 
                               BorderBrush="#FFDFDFDF"
@@ -74,7 +74,7 @@
                         BorderBrush="#FFF96060"
                         VerticalAlignment="Center"
                         Margin="8 0 10 0"
-                        FontFamily="Actor"/>
+                        FontFamily="Actor" Click="Button_Click"/>
             </Border>
             <Border  Margin="5 0 5 10"
                      CornerRadius="2 2 12 12"
@@ -88,7 +88,7 @@
                         BorderBrush="#FFF96060"
                         VerticalAlignment="Center"
                         Margin="8 0 10 0"
-                        FontFamily="Actor"/>
+                        FontFamily="Actor" Click="Button_Click_1"/>
             </Border>
         </WrapPanel>
     </Grid>
