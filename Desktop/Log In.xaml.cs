@@ -23,5 +23,30 @@ namespace Desktop
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (Validator.ValidateEmail(Email.Text) == false)
+            {
+                MessageBox.Show("Not valid email");
+            }
+            if (Validator.ValidatePassword(Password.Password) == false)
+            {
+                MessageBox.Show("Not valid password");
+            }
+            else
+            {
+                var MainEmptyWindow = new MainEmpty();
+                MainEmptyWindow.Show();
+                this.Close();
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var registration = new Registration();
+            registration.Show();
+            this.Close();
+        }
     }
 }
