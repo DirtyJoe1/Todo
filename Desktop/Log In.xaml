@@ -74,7 +74,8 @@
                         BorderBrush="#FFF96060"
                         VerticalAlignment="Center"
                         Margin="8 0 10 0"
-                        FontFamily="Actor" Click="Button_Click"/>
+                        FontFamily="Actor" Click="Button_Click"
+                        Style="{DynamicResource DefaultButtonStyle}"/>
             </Border>
             <Border  Margin="5 0 5 10"
                      CornerRadius="2 2 12 12"
@@ -88,7 +89,8 @@
                         BorderBrush="#FFF96060"
                         VerticalAlignment="Center"
                         Margin="8 0 10 0"
-                        FontFamily="Actor" Click="Button_Click_1"/>
+                        FontFamily="Actor" Click="Button_Click_1"
+                        Style="{DynamicResource DefaultButtonStyle}"/>
             </Border>
         </WrapPanel>
     </Grid>

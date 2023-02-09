@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Desktop.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Todo.Entitites;
 
 namespace Desktop
 {
@@ -30,20 +32,26 @@ namespace Desktop
             {
                 MessageBox.Show("Not valid email");
             }
-            if (Validator.ValidatePassword(Password.Password) == false)
+            else if (Validator.ValidatePassword(Password.Password) == false)
             {
                 MessageBox.Show("Not valid password");
             }
-            else
+
+            else if (UserRepository.CheckUser(Email.Text, Password.Password))
             {
                 var MainEmptyWindow = new MainEmpty();
                 MainEmptyWindow.Show();
                 this.Close();
             }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+
             var registration = new Registration();
             registration.Show();
             this.Close();

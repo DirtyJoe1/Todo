@@ -96,20 +96,20 @@
                         VerticalAlignment="Center" 
                         Margin="8 0 10 0" 
                         Click="Button_Click"
-                        FontFamily="Actor"/>
+                        FontFamily="Actor"
+                        Style="{DynamicResource DefaultButtonStyle}"/>
             </Border>
             <Border  Margin="5 0 5 10"
                      CornerRadius="2 2 12 12"
-                     BorderThickness="2" Background="#F96060">
+                     Background="#F96060">
                 <Button x:Name="BackButton" Content="Назад"
-                        Background="#F96060"
                         Padding="0 10 0 10"
                         Foreground="White"
                         FontSize="18"
-                        BorderBrush="#FFF96060"
                         VerticalAlignment="Center"
                         Margin="8 0 10 0"
-                        FontFamily="Actor" Click="BackButton_Click"/>
+                        FontFamily="Actor" Click="BackButton_Click"
+                        Style="{DynamicResource DefaultButtonStyle}"/>
             </Border>
         </WrapPanel>
     </Grid>

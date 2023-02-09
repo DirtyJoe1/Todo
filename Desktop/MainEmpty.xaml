@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Desktop"
         mc:Ignorable="d"
-        Title="MainEmpty" Height="450" Width="800">
+        Title="MainEmpty" Height="600" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="18*">
+            </ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Source="C:\Users\getha\OneDrive\Рабочий стол\Progs\C#\Todo\Desktop\Images\Profile.png"
+               Grid.Column="0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="10,10,0,0"
+               Width="75"
+               Height="75">
+        </Image>
+        <Label Content="Добро пожаловать!"
+               Grid.Column="1"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               FontFamily="Actor"
+               FontSize="36"
+               Margin="0 170 0 0">
+        </Label>
+        <Label Content="Создайте свою первую задачу!"
+               Grid.Column="1"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               FontFamily="Actor"
+               FontSize="36">
+        </Label>
+            <Button Content="Создать первую задачу"
+                    Grid.Column="1"     
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="175 200 0 0"
+                    FontFamily="Actor"
+                    FontSize="26"
+                    Background="#F96060"
+                    Foreground="White"
+                    Style="{DynamicResource DefaultButtonStyle}">
+            </Button>
     </Grid>
 </Window>
+

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Desktop.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,20 +32,21 @@ namespace Desktop
             {
                 MessageBox.Show("Not valid name");
             }
-            if(Validator.ValidateEmail(RegisterEmail.Text) == false)
+            else if(Validator.ValidateEmail(RegisterEmail.Text) == false)
             {
-                MessageBox.Show("Not valid name");
+                MessageBox.Show("Not valid email");
             }
-            if(Validator.ValidatePassword(RegisterPassword.Password) == false)
+            else if(Validator.ValidatePassword(RegisterPassword.Password) == false)
             {
                 MessageBox.Show("Not valid password");
             }
-            if(RegisterPassword.Password != RegisterPasswordConfirm.Password)
+            else if(RegisterPassword.Password != RegisterPasswordConfirm.Password)
             {
                 MessageBox.Show("Passwords doesn't match");
             }
             else
             {
+                UserRepository.AddUser(Name.Text, RegisterEmail.Text,RegisterPassword.Password);
                 var MainEmptyWindow = new MainEmpty();
                 MainEmptyWindow.Show();
                 this.Close();
