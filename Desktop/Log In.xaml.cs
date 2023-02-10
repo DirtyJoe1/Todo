@@ -28,7 +28,11 @@ namespace Desktop
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (Validator.ValidateEmail(Email.Text) == false)
+            if (Validator.ValidateIsAnyEmpty(Email.Text, Password.Password))
+            {
+                MessageBox.Show("Some fields are empty");
+            }
+            else if (Validator.ValidateEmail(Email.Text) == false)
             {
                 MessageBox.Show("Not valid email");
             }
@@ -36,7 +40,6 @@ namespace Desktop
             {
                 MessageBox.Show("Not valid password");
             }
-
             else if (UserRepository.CheckUser(Email.Text, Password.Password))
             {
                 var MainEmptyWindow = new MainEmpty();
@@ -45,7 +48,7 @@ namespace Desktop
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("User not exist");
             }
         }
 

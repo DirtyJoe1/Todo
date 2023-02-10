@@ -28,28 +28,36 @@ namespace Desktop
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(Validator.ValidateName(Name.Text) == false)
+            if (Validator.ValidateIsAnyEmpty(Name.Text, RegisterEmail.Text, RegisterPassword.Password))
+            {
+                MessageBox.Show("Some fields are empty");
+            }
+            else if (Validator.ValidateName(Name.Text) == false)
             {
                 MessageBox.Show("Not valid name");
             }
-            else if(Validator.ValidateEmail(RegisterEmail.Text) == false)
+            else if (Validator.ValidateEmail(RegisterEmail.Text) == false)
             {
                 MessageBox.Show("Not valid email");
             }
-            else if(Validator.ValidatePassword(RegisterPassword.Password) == false)
+            else if (Validator.ValidatePassword(RegisterPassword.Password) == false)
             {
                 MessageBox.Show("Not valid password");
             }
-            else if(RegisterPassword.Password != RegisterPasswordConfirm.Password)
+            else if (RegisterPassword.Password != RegisterPasswordConfirm.Password)
             {
                 MessageBox.Show("Passwords doesn't match");
             }
-            else
+            else if (UserRepository.CheckEmail(RegisterEmail.Text))
             {
-                UserRepository.AddUser(Name.Text, RegisterEmail.Text,RegisterPassword.Password);
+                UserRepository.AddUser(Name.Text, RegisterEmail.Text, RegisterPassword.Password);
                 var MainEmptyWindow = new MainEmpty();
                 MainEmptyWindow.Show();
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Email is already taken");
             }
         }
 

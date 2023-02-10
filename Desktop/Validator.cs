@@ -18,13 +18,28 @@ namespace Desktop
         }
         public static bool ValidateEmail(string email)
         {
-            if (string.IsNullOrWhiteSpace(email)) return false;
-            else return (Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"));
+            return (Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"));
         }
         public static bool ValidateName(string name)
         {
-            if(name.Length< 3) return false;
+            if (name.Length < 3) return false;
             else return true;
+        }
+        public static bool ValidateIsAnyEmpty(string name, string email, string password)
+        {
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                return true;
+            }
+            else return false;
+        }
+        public static bool ValidateIsAnyEmpty(string email, string password)
+        {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                return true;
+            }
+            else return false;
         }
     }
 }

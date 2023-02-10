@@ -16,11 +16,24 @@ namespace Desktop.Repository
         };
         public static UserModel GetUser(string email, string password)
         {
-            return users.FirstOrDefault(user => user.Email== email && user.Password == password);
+            return users.FirstOrDefault(user => user.Email == email && user.Password == password);
         }
         public static bool CheckUser(string email, string password)
         {
             return users.Contains(GetUser(email, password));
+        }
+        public static bool CheckEmail(string email)
+        {
+            bool isUnique = true;
+            foreach (UserModel user in users)
+            {
+                if (user.Email == email)
+                {
+                    isUnique = false;
+                    break;
+                }
+            }
+            return isUnique;
         }
         public static void AddUser(string name, string email, string password)
         {
