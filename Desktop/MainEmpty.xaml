@@ -1,0 +1,53 @@
+﻿<Window x:Class="Desktop.MainEmpty"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Desktop"
+        mc:Ignorable="d"
+        Title="MainEmpty" Height="600" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="18*">
+            </ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Source="C:\Users\getha\OneDrive\Рабочий стол\Progs\C#\Todo\Desktop\Images\Profile.png"
+               Grid.Column="0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Margin="10,10,0,0"
+               Width="75"
+               Height="75">
+        </Image>
+        <TextBlock x:Name="Name"
+                   Grid.Column="0" Margin="0,102,0,444"/>
+        <Label Content="Добро пожаловать!"
+               Grid.Column="1"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               FontFamily="Actor"
+               FontSize="36"
+               Margin="0 170 0 0">
+        </Label>
+        <Label Content="Создайте свою первую задачу!"
+               Grid.Column="1"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               FontFamily="Actor"
+               FontSize="36">
+        </Label>
+            <Button Content="Создать первую задачу"
+                    Grid.Column="1"     
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="175 200 0 0"
+                    FontFamily="Actor"
+                    FontSize="26"
+                    Foreground="White"
+                    Style="{DynamicResource DefaultButtonStyle}" Click="Button_Click">
+            </Button>
+    </Grid>
+</Window>
+

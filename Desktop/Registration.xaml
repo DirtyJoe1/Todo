@@ -5,9 +5,113 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Desktop"
         mc:Ignorable="d"
-        Title="Registration" Height="600" Width="800">
+        Title="Registration" Height="600" Width="800" ResizeMode="NoResize">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition >
+            </ColumnDefinition>
+            <ColumnDefinition >
+            </ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Source="C:\Users\getha\OneDrive\Рабочий стол\Progs\C#\Todo\Desktop\Images\Logo.png"
+               Margin="50 50 0 0"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Left"
+               Grid.Column="0" Width="150"
+               Height="150" />
+        <WrapPanel  Grid.ColumnSpan="1" 
+                    Margin="20 50 0 0" 
+                    Orientation="Vertical"
+                    Grid.Column="1"
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top">
+            <Label Content="Welcome back"
+                   FontSize="32"
+                   FontFamily="Actor"/>
+            <WrapPanel Margin="0 18 0 0"
+                       Orientation="Vertical"
+                       Grid.Column="1"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top">
+                <Label Content="Имя пользователя"
+                       FontSize="20"
+                       FontFamily="Actor"/>
+                <TextBox x:Name="Name" Width="326"
+                         VerticalAlignment="Bottom"
+                         BorderBrush="#FFDFDFDF" 
+                         HorizontalAlignment="Left"
+                         BorderThickness="0 0 0 1" />
+            </WrapPanel>
+            <WrapPanel Margin="0 10 0 0"
+                       Orientation="Vertical" 
+                       Grid.Column="1"
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top">
+                <Label Content="Ваша почта"
+                       FontSize="20"
+                       FontFamily="Actor"/>
+                <TextBox x:Name="RegisterEmail" Width="326"
+                         VerticalAlignment="Bottom"
+                         BorderBrush="#FFDFDFDF"
+                         HorizontalAlignment="Left" 
+                         BorderThickness="0 0 0 1" />
+            </WrapPanel>
+            <WrapPanel Margin="0 10 0 0" 
+                       Orientation="Vertical" 
+                       Grid.Column="1"
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top">
+                <Label Content="Пароль" 
+                       FontSize="20"
+                       FontFamily="Actor"/>
+                <PasswordBox x:Name="RegisterPassword"  Width="326"
+                              VerticalAlignment="Bottom" 
+                              BorderBrush="#FFDFDFDF" 
+                              HorizontalAlignment="Left" 
+                              BorderThickness="0 0 0 1" />
+            </WrapPanel>
+            <WrapPanel Margin="0 10 0 10"
+                       Orientation="Vertical"
+                       Grid.Column="1"
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top">
+                <Label Content="Повторите пароль"
+                       FontSize="20"
+                       FontFamily="Actor"/>
+                <PasswordBox x:Name="RegisterPasswordConfirm"  Width="326"
+                              VerticalAlignment="Bottom" 
+                              BorderBrush="#FFDFDFDF"
+                              HorizontalAlignment="Left"
+                              BorderThickness="0 0 0 1" />
+            </WrapPanel>
+            <Border  Margin="5 0 5 10"
+                     CornerRadius="12 12 2 2"
+                     BorderThickness="2" Background="#F96060">
+                <Button x:Name="RegisterButton" Content="Зарегистрироваться" 
+                        Background="#F96060" 
+                        Padding="0 10 0 10" 
+                        Foreground="White" 
+                        FontSize="18" 
+                        BorderBrush="#FFF96060" 
+                        VerticalAlignment="Center" 
+                        Margin="8 0 10 0" 
+                        Click="Button_Click"
+                        FontFamily="Actor"
+                        Style="{DynamicResource DefaultButtonStyle}"/>
+            </Border>
+            <Border  Margin="5 0 5 10"
+                     CornerRadius="2 2 12 12"
+                     Background="#F96060">
+                <Button x:Name="BackButton" Content="Назад"
+                        Padding="0 10 0 10"
+                        Foreground="White"
+                        FontSize="18"
+                        VerticalAlignment="Center"
+                        Margin="8 0 10 0"
+                        FontFamily="Actor" Click="BackButton_Click"
+                        Style="{DynamicResource DefaultButtonStyle}"/>
+            </Border>
+        </WrapPanel>
     </Grid>
 </Window>
 
