@@ -21,6 +21,8 @@
                Width="75"
                Height="75">
         </Image>
+        <TextBlock x:Name="Name"
+                   Grid.Column="0" Margin="0,102,0,444"/>
         <Label Content="Добро пожаловать!"
                Grid.Column="1"
                HorizontalAlignment="Left"
@@ -43,9 +45,8 @@
                     Margin="175 200 0 0"
                     FontFamily="Actor"
                     FontSize="26"
-                    Background="#F96060"
                     Foreground="White"
-                    Style="{DynamicResource DefaultButtonStyle}">
+                    Style="{DynamicResource DefaultButtonStyle}" Click="Button_Click">
             </Button>
     </Grid>
 </Window>

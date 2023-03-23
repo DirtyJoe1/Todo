@@ -9,6 +9,6 @@ namespace Desktop
 {
     internal class Manager
     {
-        public static Window window { get; set; }
+        public static Window Window { get; set; }
     }
 }

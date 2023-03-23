@@ -19,9 +19,10 @@ namespace Desktop
     /// <summary>
     /// Логика взаимодействия для Log_In.xaml
     /// </summary>
-    public partial class Log_In : Window
+    public partial class LogIn : Window
     {
-        public Log_In()
+        
+        public LogIn()
         {
             InitializeComponent();
         }
@@ -42,8 +43,8 @@ namespace Desktop
             }
             else if (UserRepository.CheckUser(Email.Text, Password.Password))
             {
-                var MainEmptyWindow = new MainEmpty();
-                MainEmptyWindow.Show();
+                var mainEmptyWindow = new MainEmpty(UserRepository.CurrentUserName(Email.Text));
+                mainEmptyWindow.Show();
                 this.Close();
             }
             else
@@ -54,7 +55,6 @@ namespace Desktop
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
             var registration = new Registration();
             registration.Show();
             this.Close();

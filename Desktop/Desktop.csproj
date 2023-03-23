@@ -56,9 +56,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainEmpty.xaml.cs">
       <DependentUpon>MainEmpty.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Repository\TaskCategories.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Validator.cs" />
     <Compile Include="Manager.cs" />
@@ -66,6 +70,10 @@
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
     <Page Include="Log In.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

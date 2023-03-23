@@ -23,7 +23,7 @@ namespace Desktop
         public Registration()
         {
             InitializeComponent();
-            Manager.window = this;
+            Manager.Window = this;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -51,8 +51,8 @@ namespace Desktop
             else if (UserRepository.CheckEmail(RegisterEmail.Text))
             {
                 UserRepository.AddUser(Name.Text, RegisterEmail.Text, RegisterPassword.Password);
-                var MainEmptyWindow = new MainEmpty();
-                MainEmptyWindow.Show();
+                var mainEmptyWindow = new MainEmpty(Name.Text);
+                mainEmptyWindow.Show();
                 this.Close();
             }
             else
@@ -63,8 +63,8 @@ namespace Desktop
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            var LoginWindow = new Log_In();
-            LoginWindow.Show();
+            var loginWindow = new LogIn();
+            loginWindow.Show();
             this.Close();
         }
     }

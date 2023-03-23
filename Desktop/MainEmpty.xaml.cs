@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Desktop.Repository;
 
 namespace Desktop
 {
@@ -19,9 +21,19 @@ namespace Desktop
     /// </summary>
     public partial class MainEmpty : Window
     {
-        public MainEmpty()
+        private string username;
+        public MainEmpty(string _username)
         {
             InitializeComponent();
+            username = _username;
+            Name.Text = username;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var main = new Main(username);
+            main.Show();
+            this.Close();
         }
     }
 }

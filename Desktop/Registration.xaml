@@ -19,7 +19,7 @@
                HorizontalAlignment="Left"
                Grid.Column="0" Width="150"
                Height="150" />
-        <WrapPanel  Grid.ColumnSpan="2" 
+        <WrapPanel  Grid.ColumnSpan="1" 
                     Margin="20 50 0 0" 
                     Orientation="Vertical"
                     Grid.Column="1"

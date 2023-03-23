@@ -13,8 +13,7 @@ namespace Desktop
     {
         public static bool ValidatePassword(string password)
         {
-            if (password.Length < 6) return false;
-            else return true;
+            return password.Length >= 6;
         }
         public static bool ValidateEmail(string email)
         {
@@ -22,24 +21,15 @@ namespace Desktop
         }
         public static bool ValidateName(string name)
         {
-            if (name.Length < 3) return false;
-            else return true;
+            return name.Length >= 3;
         }
         public static bool ValidateIsAnyEmpty(string name, string email, string password)
         {
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
-            {
-                return true;
-            }
-            else return false;
+            return string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password);
         }
         public static bool ValidateIsAnyEmpty(string email, string password)
         {
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
-            {
-                return true;
-            }
-            else return false;
+            return string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password);
         }
     }
 }
