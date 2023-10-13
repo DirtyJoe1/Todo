@@ -101,6 +101,7 @@
             <Label
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
+                Style="{DynamicResource DefaultLabelStyle}"
                 Name="UsernameLable"/>
         </WrapPanel>
 

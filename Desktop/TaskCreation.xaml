@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Desktop"
         xmlns:controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
         mc:Ignorable="d"
-        Title="TaskCreation" Height="450" Width="800">
+        Title="TaskCreation" Height="600" Width="800">
     <Grid Background="#D9D9D9">
         <Grid.ColumnDefinitions>
             <ColumnDefinition>
@@ -18,7 +18,7 @@
                     Margin="20 20 20 0">
             <Label Margin="30 0 0 0"
                    Content="Название"
-                   FontFamily="Actor"
+                   Style="{DynamicResource DefaultLabelStyle}"
                    FontSize="16"
                    Foreground="Black"/>
             <Border Background="White"
@@ -34,7 +34,7 @@
             </Border>
             <Label Margin="30 20 0 0"
                    Content="Категория"
-                   FontFamily="Actor"
+                   Style="{DynamicResource DefaultLabelStyle}"
                    FontSize="16"
                    Foreground="Black"/>
             <Border Background="White"
@@ -50,7 +50,7 @@
             </Border>
             <Label Margin="30 20 0 0"
                    Content="Описание"
-                   FontFamily="Actor"
+                   Style="{DynamicResource DefaultLabelStyle}"
                    FontSize="16"
                    Foreground="Black"/>
             <Border Background="White"
@@ -74,7 +74,8 @@
                         Margin="8"
                         Content="Создать"
                         Background="#50AF54"
-                        BorderBrush="#50AF54" Click="CreateButton_Click">
+                        BorderBrush="#50AF54" 
+                        Click="CreateButton_Click">
                 </Button>
             </Border>
         </StackPanel>

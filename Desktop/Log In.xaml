@@ -27,7 +27,7 @@
                     VerticalAlignment="Top">
             <Label Content="Добро пожаловать!"
                    FontSize="32"
-                   FontFamily="Actor"/>
+                   Style="{DynamicResource DefaultLabelStyle}"/>
             <WrapPanel Margin="0 118 0 0"
                        Orientation="Vertical"
                        Grid.Column="1"
@@ -35,7 +35,7 @@
                        VerticalAlignment="Top">
                 <Label Content="Почта"
                        FontSize="20"
-                       FontFamily="Actor"/>
+                       Style="{DynamicResource DefaultLabelStyle}"/>
                 <TextBox x:Name="Email" Width="326"
                          VerticalAlignment="Bottom"
                          BorderBrush="#FFDFDFDF"
@@ -49,7 +49,7 @@
                        VerticalAlignment="Top">
                 <Label Content="Пароль"
                        FontSize="20"
-                       FontFamily="Actor"/>
+                       Style="{DynamicResource DefaultLabelStyle}"/>
                 <PasswordBox x:Name="Password" 
                               Margin="0 0 0 10"
                               Width="326"
@@ -59,22 +59,17 @@
                               BorderThickness="0 0 0 1"/>
                 <Label HorizontalAlignment="Right"
                        Content="Восстановить пароль"
-                       BorderThickness="0 0 0 0"
-                       FontFamily="Actor"/>
+                       Style="{DynamicResource DefaultLabelStyle}"/>
             </WrapPanel>
             <Border  Margin="5 0 5 10"
                      CornerRadius="12 12 2 2" 
                      BorderThickness="2"
                      Background="#F96060">
                 <Button Content="Войти"
-                        Background="#F96060"
                         Padding="0 10 0 10"
-                        Foreground="White"
                         FontSize="18"
-                        BorderBrush="#FFF96060"
-                        VerticalAlignment="Center"
                         Margin="8 0 10 0"
-                        FontFamily="Actor" Click="Button_Click"
+                        Click="Button_Click"
                         Style="{DynamicResource DefaultButtonStyle}"/>
             </Border>
             <Border  Margin="5 0 5 10"
@@ -82,14 +77,10 @@
                      BorderThickness="2"
                      Background="#F96060">
                 <Button Content="Регистрация"
-                        Background="#F96060"
                         Padding="0 10 0 10"
-                        Foreground="White"
                         FontSize="18"
-                        BorderBrush="#FFF96060"
-                        VerticalAlignment="Center"
                         Margin="8 0 10 0"
-                        FontFamily="Actor" Click="Button_Click_1"
+                        Click="Button_Click_1"
                         Style="{DynamicResource DefaultButtonStyle}"/>
             </Border>
         </WrapPanel>
