@@ -102,10 +102,10 @@
             Margin="45,10,0,0"
             HorizontalAlignment="Left">
             <Label
+                x:Name="UsernameLable"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Style="{DynamicResource DefaultLabelStyle}"
-                Name="UsernameLable"/>
+                Style="{DynamicResource DefaultLabelStyle}"/>
         </WrapPanel>
 
         <StackPanel
