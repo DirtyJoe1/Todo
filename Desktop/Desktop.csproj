@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Desktop</RootNamespace>
     <AssemblyName>Desktop</AssemblyName>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -62,8 +62,10 @@
     <Compile Include="MainEmpty.xaml.cs">
       <DependentUpon>MainEmpty.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Repository\TaskCategories.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="TaskCreation.xaml.cs">
+      <DependentUpon>TaskCreation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Validator.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="Registration.xaml.cs">
@@ -81,10 +83,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -92,11 +90,11 @@
     <Compile Include="Log In.xaml.cs">
       <DependentUpon>Log In.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Page Include="Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TaskCreation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

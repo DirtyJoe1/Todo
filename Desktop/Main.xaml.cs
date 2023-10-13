@@ -22,51 +22,44 @@ namespace Desktop
     /// </summary>
     public partial class Main : Window
     {
-        private List<SolidColorBrush> colors;
-        private ObservableCollection<TaskModel> tasks;
-        private ObservableCollection<TaskCategories> taskCategories;
+        public static List<SolidColorBrush> colors = new List<SolidColorBrush>
+        {
+                new SolidColorBrush(Colors.Lime),
+                new SolidColorBrush(Colors.Orange),
+                new SolidColorBrush(Colors.Blue),
+                new SolidColorBrush(Colors.Magenta) 
+        };
+        public ObservableCollection<TaskModel> tasks = new ObservableCollection<TaskModel>();
+        public ObservableCollection<TaskCategory> taskCategories = new ObservableCollection<TaskCategory>();
+        public ObservableCollection<TaskModel> completedTasks = new ObservableCollection<TaskModel>();
+        public ObservableCollection<TaskCategory> completedtaskCategories = new ObservableCollection<TaskCategory>();
+        public bool isInHistory = false;
         public Main(string username)
         {
             InitializeComponent();
-            UserNameTextBlock.Text = username;
-
-            colors = new List<SolidColorBrush> 
-            { 
-                new SolidColorBrush(Colors.Lime), 
-                new SolidColorBrush(Colors.Pink), 
-                new SolidColorBrush(Colors.Purple), 
-                new SolidColorBrush(Colors.Red) };
-
-            taskCategories = new ObservableCollection<TaskCategories> 
-            { 
-                new TaskCategories { CategoryName = "Дом", Color = colors[0] }, 
-                new TaskCategories { CategoryName = "Работа", Color = colors[1] }, 
-                new TaskCategories { CategoryName = "Учеба", Color = colors[2] }, 
-                new TaskCategories { CategoryName = "Отдых", Color = colors[3] } 
-            };
-            MenuList.ItemsSource = taskCategories;
-
-            var taskDateTime = DateTime.Now;
-            tasks = new ObservableCollection<TaskModel>
-            {
-                new TaskModel {Title = "Заголовок", Description = "Go fishing with Setphan", TaskDateTime = taskDateTime, DisplayTime = taskDateTime.ToString(), IsCompleted = false, Color = Brushes.White},
-                new TaskModel {Title = "Заголовок", Description = "Go fishing with Setphan", TaskDateTime = taskDateTime, DisplayTime = taskDateTime.ToString(), IsCompleted = false, Color = Brushes.White},
-                new TaskModel {Title = "Заголовок", Description = "Read the book Zlatan", TaskDateTime = taskDateTime, DisplayTime = taskDateTime.ToString(), IsCompleted = false, Color = Brushes.White},
-                new TaskModel {Title = "Заголовок", Description = "Meet according with design team", TaskDateTime = taskDateTime, DisplayTime = taskDateTime.ToString(), IsCompleted = false, Color = Brushes.White},
-                new TaskModel {Title = "Заголовок", Description = "Meet according with design team", TaskDateTime = taskDateTime, DisplayTime = taskDateTime.ToString(), IsCompleted = false, Color = Brushes.White},
-                new TaskModel {Title = "Заголовок", Description = "Meet according with design team", TaskDateTime = taskDateTime, DisplayTime = taskDateTime.ToString(), IsCompleted = false, Color = Brushes.White},
-            };
+            UsernameLable.DataContext = username;
+            UpdateLists();
+        }
+        public void UpdateLists()
+        {
             TasksList.ItemsSource = tasks;
+            MenuList.ItemsSource = taskCategories;
         }
 
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var taskCreation = new TaskCreation(this);
+            taskCreation.Show();
+            this.Hide();
         }
         private void DeleteButton_OnClick(object sender, RoutedEventArgs e)
         {
             var task = (TaskModel)TasksList.SelectedItem;
             tasks.Remove(task);
+            if (!tasks.Any(t => t.Category.CategoryName == task.Category.CategoryName))
+            {
+                taskCategories.Remove(task.Category);
+            }
         }
 
         private void DoneButton_OnClick(object sender, RoutedEventArgs e)
@@ -77,15 +70,33 @@ namespace Desktop
                 tasks.Remove(task);
                 task.IsCompleted = true;
                 task.Color = new SolidColorBrush(Colors.Red);
-                tasks.Add(task);
+                completedTasks.Add(task);
+                if (!tasks.Any(t => t.Category.CategoryName == task.Category.CategoryName))
+                {
+                    taskCategories.Remove(task.Category);
+                    completedtaskCategories.Add(task.Category);
+                }
+                else
+                {
+                    completedtaskCategories.Add(task.Category);
+                }
                 TaskFullContent.Visibility = Visibility.Hidden;
             }
             else
             {
-                tasks.Remove(task);
+                completedTasks.Remove(task);
                 task.IsCompleted = false;
                 task.Color = new SolidColorBrush(Colors.White);
-                tasks.Insert(0, task);
+                tasks.Add(task);
+                if (!tasks.Any(t => t.Category.CategoryName == task.Category.CategoryName))
+                {
+                    taskCategories.Add(task.Category);
+                }
+                else
+                {
+                    taskCategories.Add(task.Category);
+                    completedtaskCategories.Remove(task.Category);
+                }
                 TaskFullContent.Visibility = Visibility.Visible;
             }
         }
@@ -103,6 +114,40 @@ namespace Desktop
             else
             {
                 TaskFullContent.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void HistoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            TasksList.ItemsSource = completedTasks;
+            MenuList.ItemsSource = completedtaskCategories;
+            isInHistory = true;
+        }
+
+        private void TasksButton_Click(object sender, RoutedEventArgs e)
+        {
+            isInHistory = false;
+            UpdateLists();
+        }
+
+        private void CategoriesMenuClicked(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox listBox = (ListBox)sender;
+            TaskCategory category = (TaskCategory)listBox.SelectedItem;
+            try
+            {
+                if (!isInHistory)
+                {
+                    TasksList.ItemsSource = tasks.Where(t => t.Category.CategoryName == category.CategoryName);
+                }
+                else
+                {
+                    TasksList.ItemsSource = completedTasks.Where(t => t.Category.CategoryName == category.CategoryName);
+                }
+            }
+            catch
+            {
+
             }
         }
     }

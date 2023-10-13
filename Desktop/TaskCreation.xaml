@@ -1,0 +1,116 @@
+﻿<Window x:Class="Desktop.TaskCreation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Desktop"
+        xmlns:controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+        mc:Ignorable="d"
+        Title="TaskCreation" Height="450" Width="800">
+    <Grid Background="#D9D9D9">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition>
+            </ColumnDefinition>
+            <ColumnDefinition>
+            </ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0"
+                    Margin="20 20 20 0">
+            <Label Margin="30 0 0 0"
+                   Content="Название"
+                   FontFamily="Actor"
+                   FontSize="16"
+                   Foreground="Black"/>
+            <Border Background="White"
+                    Width="300"
+                    Height="40"
+                    CornerRadius="15">
+                <TextBox
+                    Name="Title"
+                    Background="White"
+                    BorderBrush="White"
+                    Margin="5">
+                </TextBox>
+            </Border>
+            <Label Margin="30 20 0 0"
+                   Content="Категория"
+                   FontFamily="Actor"
+                   FontSize="16"
+                   Foreground="Black"/>
+            <Border Background="White"
+                    Width="300"
+                    Height="40"
+                    CornerRadius="15">
+                <TextBox
+                    Name="Category"
+                    Background="White"
+                    BorderBrush="White"
+                    Margin="5">
+                </TextBox>
+            </Border>
+            <Label Margin="30 20 0 0"
+                   Content="Описание"
+                   FontFamily="Actor"
+                   FontSize="16"
+                   Foreground="Black"/>
+            <Border Background="White"
+                    Width="300"
+                    Height="120"
+                    CornerRadius="15"
+                    Margin="0 0 0 20">
+                <TextBox
+                    Name="Description"
+                    Background="White"
+                    BorderBrush="White"
+                    Margin="5">
+                </TextBox>
+            </Border>
+            <Border Background="#50AF54"
+                    HorizontalAlignment="Center"
+                    Width="300"
+                    Height="50"
+                    CornerRadius="15">
+                <Button x:Name="CreateButton"
+                        Margin="8"
+                        Content="Создать"
+                        Background="#50AF54"
+                        BorderBrush="#50AF54" Click="CreateButton_Click">
+                </Button>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Column="1"
+                    Margin="20 20 20 0">
+            <DatePicker Name="datePicker"
+                        Width="250"
+                        Margin="25"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top">
+            </DatePicker>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="25"
+                        Name="timePicker">
+                <ComboBox Name="hourComboBox" 
+                          Width="50"/>
+                <Label Content=":"/>
+                <ComboBox Name="minuteComboBox" 
+                          Width="50"/>
+            </StackPanel>
+            <Border Background="#E04321"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Width="300"
+                    Height="50"
+                    Margin="0 198 0 0"
+                    CornerRadius="15">
+                <Button x:Name="CancelButton"
+                        Margin="8"
+                        Content="Отмена"
+                        Background="#E04321"
+                        BorderBrush="#E04321" Click="CancelButton_Click">
+                </Button>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Window>

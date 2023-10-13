@@ -74,7 +74,8 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="76.04"></RowDefinition>
+            <RowDefinition Height="8.96"/>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -84,41 +85,44 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Image Source="C:\Users\getha\OneDrive\Рабочий стол\Progs\C#\Todo\Desktop\Images\Profile.png"
+        <Image Source="\Images\Profile.png"
                Grid.Column="0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Margin="10,10,0,0"
                Width="75"
-               Height="75">
+               Height="75" Grid.RowSpan="2">
         </Image>
         <WrapPanel
             Grid.Column="0"
-            Grid.Row="1"
-            Margin="0 10 10 0"
-            HorizontalAlignment="Center">
-            <TextBlock
-                Name="UserNameTextBlock"/>
+            Grid.Row="2"
+            Margin="45,10,0,0"
+            HorizontalAlignment="Left">
+            <Label
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Name="UsernameLable"/>
         </WrapPanel>
 
         <StackPanel
             Grid.Column="0"
-            Grid.Row="2"
-            Margin="0 50 10 0"
-            HorizontalAlignment="Center">
-            <Button Name="TasksButton" BorderBrush="#F5F5F5" Background="#F5F5F5" Foreground="#690000" Content="Задачи" HorizontalAlignment="Left"></Button>
-            <Button Name="HistoryButton" Margin="0,20,0,0" BorderBrush="#F5F5F5" Background="#F5F5F5" Foreground="#690000" Content="История"></Button>
+            Grid.Row="3"
+            Margin="23,50,0,0"
+            HorizontalAlignment="Left">
+            <Button Name="TasksButton" BorderBrush="#F5F5F5" Background="#F5F5F5" Foreground="#690000" Content="Задачи" HorizontalAlignment="Left" Click="TasksButton_Click"></Button>
+            <Button Name="HistoryButton" Margin="0,20,0,0" BorderBrush="#F5F5F5" Background="#F5F5F5" Foreground="#690000" Content="История" Click="HistoryButton_Click"></Button>
         </StackPanel>
 
         <ListBox
             ItemTemplate="{StaticResource listTemplate}"
             BorderThickness="0"
             Grid.Column="1"
-            VerticalAlignment="Bottom"
+            VerticalAlignment="Top"
             HorizontalContentAlignment="Stretch"
             x:Name="MenuList"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            Background="#F5F5F5">
+            Background="#F5F5F5"
+            SelectionChanged="CategoriesMenuClicked" Grid.Row="2">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
@@ -129,8 +133,7 @@
         <ListBox
                 ItemTemplate="{StaticResource listTaskTemplate}"
                 Grid.Column="1"
-                Grid.Row="2"
-                HorizontalAlignment="Stretch"
+                Grid.Row="3"
                 HorizontalContentAlignment="Stretch"
                 BorderThickness="0"
                 x:Name="TasksList"
@@ -145,23 +148,33 @@
         </ListBox>
 
         <WrapPanel
-            Grid.Column="0"
-            Grid.Row="3"
+            Grid.Row="4"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Height="90">
-            <Button
-                Name="AddTaskButton"
-                Content="+"
-                FontSize="24" Click="AddTaskButton_Click">
-            </Button>
+            <Border
+                Width="50"
+                Height="50"
+                Background="#F96060"
+                CornerRadius="30">
+                <Button
+                    BorderBrush="#F96060"
+                    Background="#F96060"
+                    Name="AddTaskButton"
+                    Content="+"
+                    FontSize="24"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Click="AddTaskButton_Click">
+                </Button>
+            </Border>
         </WrapPanel>
 
         <Border
             Name="TaskFullContent"
             Visibility="Hidden"
             Grid.Column="2"
-            Grid.Row="2"
+            Grid.Row="3"
             BorderBrush="Black"
             BorderThickness="1"
             Margin="30 10 60 20">

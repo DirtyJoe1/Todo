@@ -13,7 +13,7 @@
             <ColumnDefinition Width="18*">
             </ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Image Source="C:\Users\getha\OneDrive\Рабочий стол\Progs\C#\Todo\Desktop\Images\Profile.png"
+        <Image Source="Images\Profile.png"
                Grid.Column="0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"

@@ -13,7 +13,7 @@
             <ColumnDefinition>
             </ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Image Source="C:\Users\getha\OneDrive\Рабочий стол\Progs\C#\Todo\Desktop\Images\Logo.png"
+        <Image Source="\Images\Logo.png"
                Margin="70 70 0 0"
                VerticalAlignment="Top"
                HorizontalAlignment="Left"
@@ -50,7 +50,8 @@
                 <Label Content="Пароль"
                        FontSize="20"
                        FontFamily="Actor"/>
-                <PasswordBox x:Name="Password"  Margin="0 0 0 10"
+                <PasswordBox x:Name="Password" 
+                              Margin="0 0 0 10"
                               Width="326"
                               VerticalAlignment="Bottom" 
                               BorderBrush="#FFDFDFDF"
@@ -58,7 +59,6 @@
                               BorderThickness="0 0 0 1"/>
                 <Label HorizontalAlignment="Right"
                        Content="Восстановить пароль"
-                       Background="White"
                        BorderThickness="0 0 0 0"
                        FontFamily="Actor"/>
             </WrapPanel>
