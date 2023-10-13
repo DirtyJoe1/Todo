@@ -1,12 +1,13 @@
-﻿<Window x:Class="Desktop.Main"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Desktop"
-        mc:Ignorable="d"
-        Title="Main" Height="600" Width="800">
-    <Window.Resources>
+﻿<Page x:Class="Desktop.View.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Desktop.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="MainPage">
+    <Page.Resources>
         <DataTemplate x:Key="listTemplate">
             <StackPanel>
                 <TextBlock 
@@ -71,7 +72,8 @@
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
-    </Window.Resources>
+    </Page.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="76.04"></RowDefinition>
@@ -91,7 +93,8 @@
                VerticalAlignment="Top"
                Margin="10,10,0,0"
                Width="75"
-               Height="75" Grid.RowSpan="2">
+               Height="75"
+               Grid.RowSpan="2">
         </Image>
         <WrapPanel
             Grid.Column="0"
@@ -110,7 +113,7 @@
             Grid.Row="3"
             Margin="23,50,0,0"
             HorizontalAlignment="Left">
-            <Button Name="TasksButton" BorderBrush="#F5F5F5" Background="#F5F5F5" Foreground="#690000" Content="Задачи" HorizontalAlignment="Left" Click="TasksButton_Click"></Button>
+            <Button Name="TasksButton" BorderBrush="#F5F5F5" Background="#F5F5F5" Foreground="#690000" Content="Задачи" HorizontalAlignment="Left" Click="TasksButton_Click"> </Button>
             <Button Name="HistoryButton" Margin="0,20,0,0" BorderBrush="#F5F5F5" Background="#F5F5F5" Foreground="#690000" Content="История" Click="HistoryButton_Click"></Button>
         </StackPanel>
 
@@ -217,4 +220,4 @@
             </StackPanel>
         </Border>
     </Grid>
-</Window>
+</Page>

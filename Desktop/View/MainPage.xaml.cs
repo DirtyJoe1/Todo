@@ -1,5 +1,4 @@
-﻿using Desktop.Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -12,32 +11,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Todo.Entitites;
 
-namespace Desktop
+namespace Desktop.View
 {
     /// <summary>
-    /// Логика взаимодействия для Main.xaml
+    /// Логика взаимодействия для MainPage.xaml
     /// </summary>
-    public partial class Main : Window
+    public partial class MainPage : Page
     {
-        public static List<SolidColorBrush> colors = new List<SolidColorBrush>
-        {
-                new SolidColorBrush(Colors.Lime),
-                new SolidColorBrush(Colors.Orange),
-                new SolidColorBrush(Colors.Blue),
-                new SolidColorBrush(Colors.Magenta) 
-        };
         public ObservableCollection<TaskModel> tasks = new ObservableCollection<TaskModel>();
         public ObservableCollection<TaskCategory> taskCategories = new ObservableCollection<TaskCategory>();
         public ObservableCollection<TaskModel> completedTasks = new ObservableCollection<TaskModel>();
         public ObservableCollection<TaskCategory> completedtaskCategories = new ObservableCollection<TaskCategory>();
         public bool isInHistory = false;
-        public Main(string username)
+        public MainPage(string username)
         {
+            UsernameLable.Content = username;
             InitializeComponent();
-            UsernameLable.DataContext = username;
             UpdateLists();
         }
         public void UpdateLists()
@@ -48,18 +41,28 @@ namespace Desktop
 
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            var taskCreation = new TaskCreation(this);
-            taskCreation.Show();
-            this.Hide();
+            NavigationService.Navigate(new TaskCreation(this));
         }
         private void DeleteButton_OnClick(object sender, RoutedEventArgs e)
         {
             var task = (TaskModel)TasksList.SelectedItem;
-            tasks.Remove(task);
-            if (!tasks.Any(t => t.Category.CategoryName == task.Category.CategoryName))
+            if (!isInHistory)
             {
-                taskCategories.Remove(task.Category);
+                tasks.Remove(task);
+                if (!tasks.Any(t => t.Category.CategoryName == task.Category.CategoryName))
+                {
+                    taskCategories.Remove(task.Category);
+                }
             }
+            else
+            {
+                completedTasks.Remove(task);
+                if (!completedTasks.Any(t => t.Category.CategoryName == task.Category.CategoryName))
+                {
+                    completedtaskCategories.Remove(task.Category);
+                }
+            }
+
         }
 
         private void DoneButton_OnClick(object sender, RoutedEventArgs e)

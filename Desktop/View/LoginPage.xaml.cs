@@ -11,23 +11,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Todo.Entitites;
 
-namespace Desktop
+namespace Desktop.View
 {
     /// <summary>
-    /// Логика взаимодействия для Log_In.xaml
+    /// Логика взаимодействия для LoginPage.xaml
     /// </summary>
-    public partial class LogIn : Window
+    public partial class LoginPage : Page
     {
-        
-        public LogIn()
+        public LoginPage()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             if (Validator.ValidateIsAnyEmpty(Email.Text, Password.Password))
             {
@@ -43,9 +42,7 @@ namespace Desktop
             }
             else if (UserRepository.CheckUser(Email.Text, Password.Password))
             {
-                var mainEmptyWindow = new MainEmpty(UserRepository.CurrentUserName(Email.Text));
-                mainEmptyWindow.Show();
-                this.Close();
+                NavigationService?.Navigate(new MainEmptyPage(UserRepository.CurrentUserName(Email.Text)));
             }
             else
             {
@@ -53,11 +50,9 @@ namespace Desktop
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            var registration = new Registration();
-            registration.Show();
-            this.Close();
+            NavigationService?.Navigate(new RegistrationPage());
         }
     }
 }

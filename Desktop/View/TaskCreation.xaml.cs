@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,22 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Todo.Entitites;
 
-namespace Desktop
+namespace Desktop.View
 {
     /// <summary>
     /// Логика взаимодействия для TaskCreation.xaml
     /// </summary>
-    public partial class TaskCreation : Window
+    public partial class TaskCreation : Page
     {
+        MainPage _mainPage;
         DateTime date;
-        Main _main;
-        public TaskCreation(Main main)
+        public TaskCreation(MainPage main)
         {
             InitializeComponent();
-            _main = main;
+            _mainPage = main;
             for (int hour = 0; hour < 24; hour++)
             {
                 hourComboBox.Items.Add(hour.ToString("D2"));
@@ -66,20 +66,19 @@ namespace Desktop
                     Color = new SolidColorBrush(Color.FromRgb((byte)random.Next(256), (byte)random.Next(256), (byte)random.Next(256))),
                 }
             };
-            this.Close();
-            _main.tasks.Add(newTask);
-            if(!_main.taskCategories.Any(t => t.CategoryName == newTask.Category.CategoryName))
+
+            _mainPage.tasks.Add(newTask);
+            if (!_mainPage.taskCategories.Any(t => t.CategoryName == newTask.Category.CategoryName))
             {
-                _main.taskCategories.Add(newTask.Category);
+                _mainPage.taskCategories.Add(newTask.Category);
             }
-            _main.UpdateLists();
-            _main.Show();
+            _mainPage.UpdateLists();
+            NavigationService?.Navigate(_mainPage);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            _main.Show();
+            NavigationService?.Navigate(_mainPage);
         }
     }
 }

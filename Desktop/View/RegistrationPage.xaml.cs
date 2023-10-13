@@ -11,23 +11,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Desktop
+namespace Desktop.View
 {
     /// <summary>
-    /// Логика взаимодействия для Registration.xaml
+    /// Логика взаимодействия для RegistrationPage.xaml
     /// </summary>
-    public partial class Registration : Window
+    public partial class RegistrationPage : Page
     {
-        public Registration()
+        public RegistrationPage()
         {
             InitializeComponent();
-            Manager.Window = this;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService?.Navigate(new LoginPage());
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            
             if (Validator.ValidateIsAnyEmpty(Name.Text, RegisterEmail.Text, RegisterPassword.Password))
             {
                 MessageBox.Show("Some fields are empty");
@@ -51,21 +58,12 @@ namespace Desktop
             else if (UserRepository.CheckEmail(RegisterEmail.Text))
             {
                 UserRepository.AddUser(Name.Text, RegisterEmail.Text, RegisterPassword.Password);
-                var mainEmptyWindow = new MainEmpty(Name.Text);
-                mainEmptyWindow.Show();
-                this.Close();
+                NavigationService?.Navigate(new MainEmptyPage((Name.Text)));
             }
             else
             {
                 MessageBox.Show("Email is already taken");
             }
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            var loginWindow = new LogIn();
-            loginWindow.Show();
-            this.Close();
         }
     }
 }

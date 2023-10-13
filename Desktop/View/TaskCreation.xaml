@@ -1,12 +1,13 @@
-﻿<Window x:Class="Desktop.TaskCreation"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Desktop"
-        xmlns:controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
-        mc:Ignorable="d"
-        Title="TaskCreation" Height="600" Width="800">
+﻿<Page x:Class="Desktop.View.TaskCreation"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Desktop.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="TaskCreation">
+
     <Grid Background="#D9D9D9">
         <Grid.ColumnDefinitions>
             <ColumnDefinition>
@@ -114,4 +115,4 @@
             </Border>
         </StackPanel>
     </Grid>
-</Window>
+</Page>
