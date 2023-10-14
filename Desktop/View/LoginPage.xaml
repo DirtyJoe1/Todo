@@ -66,18 +66,21 @@
             <Border  Margin="5 0 5 10"
                      CornerRadius="12 12 2 2" 
                      BorderThickness="2"
-                     Background="#F96060">
+                     Background="#F96060"
+                     Style="{DynamicResource DefaultBorderStyle}">
                 <Button Content="Войти"
                         Padding="0 10 0 10"
                         FontSize="18"
                         Margin="8 0 10 0"
                         Name="LoginButton"
-                        Style="{DynamicResource DefaultButtonStyle}" Click="LoginButton_Click"/>
+                        Style="{DynamicResource DefaultButtonStyle}" Click="LoginButton_Click"
+                        />
             </Border>
             <Border  Margin="5 0 5 10"
                      CornerRadius="2 2 12 12"
                      BorderThickness="2"
-                     Background="#F96060">
+                     Background="#F96060"
+                     Style="{DynamicResource DefaultBorderStyle}">
                 <Button Content="Регистрация"
                         Padding="0 10 0 10"
                         FontSize="18"

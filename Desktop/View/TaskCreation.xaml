@@ -70,7 +70,8 @@
                     HorizontalAlignment="Center"
                     Width="300"
                     Height="50"
-                    CornerRadius="15">
+                    CornerRadius="15"
+                    Style="{DynamicResource DefaultBorderStyle}">
                 <Button x:Name="CreateButton"
                         Margin="8"
                         Content="Создать"
@@ -105,7 +106,8 @@
                     Width="300"
                     Height="50"
                     Margin="0 198 0 0"
-                    CornerRadius="15">
+                    CornerRadius="15"
+                    Style="{DynamicResource DefaultBorderStyle}">
                 <Button x:Name="CancelButton"
                         Margin="8"
                         Content="Отмена"

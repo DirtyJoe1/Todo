@@ -160,7 +160,8 @@
                 Width="50"
                 Height="50"
                 Background="#F96060"
-                CornerRadius="30">
+                CornerRadius="30"
+                Style="{DynamicResource DefaultBorderStyle}">
                 <Button
                     BorderBrush="#F96060"
                     Background="#F96060"

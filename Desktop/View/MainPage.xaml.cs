@@ -29,9 +29,9 @@ namespace Desktop.View
         public bool isInHistory = false;
         public MainPage(string username)
         {
-            UsernameLable.Content = username;
             InitializeComponent();
             UpdateLists();
+            UsernameLable.Content = username;
         }
         public void UpdateLists()
         {

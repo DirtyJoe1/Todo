@@ -90,7 +90,8 @@
             <Border  Margin="5 0 5 10"
                      CornerRadius="12 12 2 2"
                      BorderThickness="2"
-                     Background="#F96060">
+                     Background="#F96060"
+                     Style="{DynamicResource DefaultBorderStyle}">
                 <Button x:Name="RegisterButton" Content="Зарегистрироваться" 
                         Padding="0 10 0 10" 
                         FontSize="18" 
@@ -100,7 +101,8 @@
             </Border>
             <Border  Margin="5 0 5 10"
                      CornerRadius="2 2 12 12"
-                     Background="#F96060">
+                     Background="#F96060"
+                     Style="{DynamicResource DefaultBorderStyle}">
                 <Button x:Name="BackButton" Content="Назад"
                         Padding="0 10 0 10"
                         Foreground="White"
