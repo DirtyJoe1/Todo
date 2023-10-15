@@ -97,5 +97,14 @@
     </Style>
     <Style x:Key="DefaultLabelStyle" TargetType="{x:Type Label}">
         <Setter Property="FontFamily" Value="Actor"/>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
