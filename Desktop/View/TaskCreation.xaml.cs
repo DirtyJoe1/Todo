@@ -78,7 +78,7 @@ namespace Desktop.View
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(_mainPage);
+            NavigationService?.GoBack();
         }
     }
 }

@@ -25,5 +25,22 @@ namespace Desktop
         {
             InitializeComponent();
         }
+
+        private void BaseFrame_Navigating(object sender, NavigatingCancelEventArgs e)
+        {
+        }
+
+        private void BaseFrame_Navigation(object sender, NavigationEventArgs e)
+        {
+            var fadeOutAnimation = new DoubleAnimation
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(0.75)),
+                From = 0,
+                To = 1,
+                DecelerationRatio = 0.65
+            };
+
+            baseFrame.BeginAnimation(OpacityProperty, fadeOutAnimation);
+        }
     }
 }

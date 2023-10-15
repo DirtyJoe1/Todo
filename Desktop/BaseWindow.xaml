@@ -8,7 +8,9 @@
         Icon="/Images/Logo.png"
         Height="600" Width="800" ResizeMode="NoResize">
     <Grid>
-        <Frame Name="baseFrame" NavigationUIVisibility="Hidden" Source="View/LoginPage.xaml">
+        <Frame Name="baseFrame" NavigationUIVisibility="Hidden" Source="View/LoginPage.xaml"
+               Navigating="BaseFrame_Navigating" 
+               Navigated="BaseFrame_Navigation">
         </Frame>
     </Grid>
 </Window>

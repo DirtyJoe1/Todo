@@ -98,5 +98,4 @@
     <Style x:Key="DefaultLabelStyle" TargetType="{x:Type Label}">
         <Setter Property="FontFamily" Value="Actor"/>
     </Style>
-    <Style x:Key="TransitionStyle" TargetType="{x:Type Frame}">
-    </Style></ResourceDictionary>
+</ResourceDictionary>
