@@ -9,6 +9,7 @@ namespace Todo.Entitites
 {
     public class TaskModel
     {
+        public Guid Id { get; set; }
         public DateTime TaskDateTime { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

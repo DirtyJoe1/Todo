@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Todo.Entitites
 {
-    public class UserModel
+    public class RegistrationModelDto
     {
         public string Name { get; set; }
         public string Email { get; set; }

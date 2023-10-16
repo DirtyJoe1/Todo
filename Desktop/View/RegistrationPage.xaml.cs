@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Todo.Entitites;
 
 namespace Desktop.View
 {
@@ -31,38 +32,23 @@ namespace Desktop.View
             NavigationService?.Navigate(new LoginPage());
         }
 
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        private async void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-
-            
-            if (Validator.ValidateIsAnyEmpty(Name.Text, RegisterEmail.Text, RegisterPassword.Password))
+            var registration = new RegistrationModelDto()
             {
-                MessageBox.Show("Some fields are empty");
-            }
-            else if (Validator.ValidateName(Name.Text) == false)
+                Name = RegisterEmail.Text,
+                Email = RegisterEmail.Text,
+                Password = RegisterPassword.Password,
+            };
+            var repository = new Repository.Repository();
+            var response = await repository.PostUserRegistrationAsync(registration);
+            if (response.IsSuccessStatusCode)
             {
-                MessageBox.Show("Not valid name");
-            }
-            else if (Validator.ValidateEmail(RegisterEmail.Text) == false)
-            {
-                MessageBox.Show("Not valid email");
-            }
-            else if (Validator.ValidatePassword(RegisterPassword.Password) == false)
-            {
-                MessageBox.Show("Not valid password");
-            }
-            else if (RegisterPassword.Password != RegisterPasswordConfirm.Password)
-            {
-                MessageBox.Show("Passwords doesn't match");
-            }
-            else if (UserRepository.CheckEmail(RegisterEmail.Text))
-            {
-                UserRepository.AddUser(Name.Text, RegisterEmail.Text, RegisterPassword.Password);
-                NavigationService?.Navigate(new MainEmptyPage((Name.Text)));
+                NavigationService?.Navigate(new MainEmptyPage(repository));
             }
             else
             {
-                MessageBox.Show("Email is already taken");
+                MessageBox.Show("Пользователь уже зарегестрирован");
             }
         }
     }

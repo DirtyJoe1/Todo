@@ -29,8 +29,7 @@ namespace Desktop.Repository
         }
         public static string CurrentUserName(string email)
         {
-            var user = Users.Find(_user => _user.Email == email);
-            return user.Name;
+            return "Potom";
         }
         public static void AddUser(string name, string email, string password)
         {

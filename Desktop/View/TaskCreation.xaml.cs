@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Desktop.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,10 +25,12 @@ namespace Desktop.View
     {
         MainPage _mainPage;
         DateTime date;
-        public TaskCreation(MainPage main)
+        Repository.Repository _repository;
+        public TaskCreation(MainPage main, Repository.Repository repository)
         {
             InitializeComponent();
             _mainPage = main;
+            _repository = repository;
             for (int hour = 0; hour < 24; hour++)
             {
                 hourComboBox.Items.Add(hour.ToString("D2"));
@@ -49,11 +53,12 @@ namespace Desktop.View
                 date = new DateTime(DateTime.Today.Year, pickedDate.Month, pickedDate.Day, selectedHour, selectedMinute, 0);
             }
         }
-        private void CreateButton_Click(object sender, RoutedEventArgs e)
+        private async void CreateButton_Click(object sender, RoutedEventArgs e)
         {
             Random random = new Random();
             TaskModel newTask = new TaskModel()
             {
+                Id = Guid.NewGuid(),
                 TaskDateTime = date,
                 Title = Title.Text,
                 Description = Description.Text,
@@ -66,12 +71,7 @@ namespace Desktop.View
                     Color = new SolidColorBrush(Color.FromRgb((byte)random.Next(256), (byte)random.Next(256), (byte)random.Next(256))),
                 }
             };
-
-            _mainPage.tasks.Add(newTask);
-            if (!_mainPage.taskCategories.Any(t => t.CategoryName == newTask.Category.CategoryName))
-            {
-                _mainPage.taskCategories.Add(newTask.Category);
-            }
+            await _repository.PostTodoAsync(newTask);
             _mainPage.UpdateLists();
             NavigationService?.Navigate(_mainPage);
         }

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Desktop.Repository;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,33 +24,47 @@ namespace Desktop.View
     /// </summary>
     public partial class MainPage : Page
     {
+        public Repository.Repository _repository;
         public ObservableCollection<TaskModel> tasks = new ObservableCollection<TaskModel>();
         public ObservableCollection<TaskCategory> taskCategories = new ObservableCollection<TaskCategory>();
         public ObservableCollection<TaskModel> completedTasks = new ObservableCollection<TaskModel>();
         public ObservableCollection<TaskCategory> completedtaskCategories = new ObservableCollection<TaskCategory>();
         public bool isInHistory = false;
-        public MainPage(string username)
+        public async void GetData()
+        {
+            tasks = Mapper.DeMapTodo(await _repository.GetTodosAsync());
+            TasksList.ItemsSource = tasks;
+            string content = await _repository.GetUser();
+            UsernameLable.Content = content;
+        }
+        public MainPage(Repository.Repository repository)
         {
             InitializeComponent();
+            _repository = repository;
+            GetData();
             UpdateLists();
-            UsernameLable.Content = username;
         }
         public void UpdateLists()
         {
-            TasksList.ItemsSource = tasks;
-            MenuList.ItemsSource = taskCategories;
+            GetData();
+            foreach(var i in tasks)
+            {
+            }
         }
-
+        public async void DeleteTask(TaskModel task)
+        {
+            await _repository.DeleteTodo(task.Id);
+        }
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new TaskCreation(this));
+            NavigationService.Navigate(new TaskCreation(this, _repository));
         }
         private void DeleteButton_OnClick(object sender, RoutedEventArgs e)
         {
             var task = (TaskModel)TasksList.SelectedItem;
             if (!isInHistory)
             {
-                tasks.Remove(task);
+                DeleteTask(task);
                 if (!tasks.Any(t => t.Category.CategoryName == task.Category.CategoryName))
                 {
                     taskCategories.Remove(task.Category);

@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +17,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Todo.Entitites;
 using Windows.UI.Xaml.Media.Animation;
 
 namespace Desktop.View
@@ -21,34 +25,30 @@ namespace Desktop.View
     /// <summary>
     /// Логика взаимодействия для LoginPage.xaml
     /// </summary>
+    /// 
     public partial class LoginPage : Page
     {
         public LoginPage()
         {
             InitializeComponent();
         }
-
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Validator.ValidateIsAnyEmpty(Email.Text, Password.Password))
+            var repository = new Repository.Repository();
+            var login = new LoginModelDto
             {
-                MessageBox.Show("Some fields are empty");
-            }
-            else if (Validator.ValidateEmail(Email.Text) == false)
+                Email = Email.Text,
+                Password = Password.Password,
+
+            };
+            HttpResponseMessage response = await repository.PostUserLoginAsync(login);
+            if (response.IsSuccessStatusCode)
             {
-                MessageBox.Show("Not valid email");
-            }
-            else if (Validator.ValidatePassword(Password.Password) == false)
-            {
-                MessageBox.Show("Not valid password");
-            }
-            else if (UserRepository.CheckUser(Email.Text, Password.Password))
-            {
-                NavigationService?.Navigate(new MainEmptyPage(UserRepository.CurrentUserName(Email.Text)));
+                NavigationService?.Navigate(new MainEmptyPage(repository));
             }
             else
             {
-                MessageBox.Show("User not exist");
+                MessageBox.Show("Пользователя не существует");
             }
         }
 

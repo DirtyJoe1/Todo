@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Todo.Entitites
 {
-    public class UserModel
+    public class LoginModelDto
     {
-        public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
     }

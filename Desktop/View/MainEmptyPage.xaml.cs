@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Desktop.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,16 +22,22 @@ namespace Desktop.View
     /// </summary>
     public partial class MainEmptyPage : Page
     {
-        string Username;
-        public MainEmptyPage(string _username)
+        Repository.Repository _repository;
+        public MainEmptyPage(Repository.Repository repository)
         {
             InitializeComponent();
-            Username = _username;
+            _repository = repository;
+            SetUsername();
+        }
+        public async void SetUsername()
+        {
+            string content = await _repository.GetUser();
+            UsernameLable.Content = content;
         }
 
         private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new MainPage(Username));
+            NavigationService.Navigate(new MainPage(_repository));
         }
     }
 }

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Todo.Entitites
+namespace Todo.Entitites.DataTransferObjects
 {
-    public class UserModel
+    public class UserToGetDto
     {
         public string Name { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
+        public string ImageId { get; set; }
+
     }
 }

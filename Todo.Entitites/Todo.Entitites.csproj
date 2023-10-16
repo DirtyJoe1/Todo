@@ -42,6 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTransferObjects\TodoDto.cs" />
+    <Compile Include="DataTransferObjects\LoginModelDto.cs" />
+    <Compile Include="DataTransferObjects\UserToGetDto.cs" />
+    <Compile Include="Mapper.cs" />
+    <Compile Include="DataTransferObjects\RegistrationModelDto.cs" />
     <Compile Include="TaskModel.cs" />
     <Compile Include="UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
