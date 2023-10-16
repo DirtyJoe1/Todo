@@ -40,10 +40,10 @@ namespace Desktop.View
                 {
                     taskCategories.Add(i.CategoryName);
                 }
-                else if (taskCategories.All(cat => cat.Count() == 0)
-                {
+                //else if (taskCategories.All(cat => cat.Count() == 0)
+                //{
 
-                }
+                //}
             }
             MenuList.ItemsSource = taskCategories;
         }
