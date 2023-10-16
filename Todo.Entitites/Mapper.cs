@@ -16,7 +16,7 @@ namespace Todo.Entitites
             return new TodoDto
             {
                 Id = model.Id.ToString(),
-                Category = model.Category.CategoryName,
+                Category = model.CategoryName,
                 Title = model.Title,
                 Description = model.Description,
                 Date = (int)model.TaskDateTime.ToBinary(),
@@ -45,20 +45,16 @@ namespace Todo.Entitites
             var deMappedTodos = new ObservableCollection<TaskModel>();
             for (int i = 0; i < todo.Count(); i++)
             {
-                Random random = new Random();
                 var deMappedTodo = new TaskModel
                 {
+                    Id = Guid.Parse(todo[i].Id),
                     TaskDateTime = DateTimeOffset.FromUnixTimeSeconds(todo[i].Date).LocalDateTime,
                     Title = todo[i].Title,
                     Description = todo[i].Description,
                     IsCompleted = todo[i].IsCompleted,
-                    VisibleTime = DateTimeOffset.FromUnixTimeSeconds(todo[i].Date).LocalDateTime.Hour.ToString(),
+                    DisplayTime = DateTimeOffset.FromUnixTimeSeconds(todo[i].Date).LocalDateTime.TimeOfDay.ToString(),
                     Color = new SolidColorBrush(Colors.White),
-                    Category = new TaskCategory
-                    {
-                        CategoryName = todo[i].Category,
-                        Color = new SolidColorBrush(Color.FromRgb((byte)random.Next(256), (byte)random.Next(256), (byte)random.Next(256)))
-                    }
+                    CategoryName = todo[i].Category,
                 };
                 deMappedTodos.Add(deMappedTodo);
             }

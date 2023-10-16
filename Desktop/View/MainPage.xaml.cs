@@ -26,14 +26,29 @@ namespace Desktop.View
     {
         public Repository.Repository _repository;
         public ObservableCollection<TaskModel> tasks = new ObservableCollection<TaskModel>();
-        public ObservableCollection<TaskCategory> taskCategories = new ObservableCollection<TaskCategory>();
+        public ObservableCollection<string> taskCategories = new ObservableCollection<string>();
         public ObservableCollection<TaskModel> completedTasks = new ObservableCollection<TaskModel>();
-        public ObservableCollection<TaskCategory> completedtaskCategories = new ObservableCollection<TaskCategory>();
+        public ObservableCollection<string> completedtaskCategories = new ObservableCollection<string>();
         public bool isInHistory = false;
-        public async void GetData()
+        public async void SetData()
         {
             tasks = Mapper.DeMapTodo(await _repository.GetTodosAsync());
             TasksList.ItemsSource = tasks;
+            foreach (var i in tasks)
+            {
+                if (!taskCategories.Contains(i.CategoryName))
+                {
+                    taskCategories.Add(i.CategoryName);
+                }
+                else if (taskCategories.All(cat => cat.Count() == 0)
+                {
+
+                }
+            }
+            MenuList.ItemsSource = taskCategories;
+        }
+        public async void SetUsername()
+        {
             string content = await _repository.GetUser();
             UsernameLable.Content = content;
         }
@@ -41,19 +56,21 @@ namespace Desktop.View
         {
             InitializeComponent();
             _repository = repository;
-            GetData();
-            UpdateLists();
-        }
-        public void UpdateLists()
-        {
-            GetData();
-            foreach(var i in tasks)
-            {
-            }
+            SetUsername();
+            SetData();
         }
         public async void DeleteTask(TaskModel task)
         {
-            await _repository.DeleteTodo(task.Id);
+            var response = await _repository.DeleteTodo(task.Id);
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Удалено");
+            }
+            else
+            {
+                MessageBox.Show(response.StatusCode.ToString());
+            }
+            SetData();
         }
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
@@ -65,20 +82,12 @@ namespace Desktop.View
             if (!isInHistory)
             {
                 DeleteTask(task);
-                if (!tasks.Any(t => t.Category.CategoryName == task.Category.CategoryName))
-                {
-                    taskCategories.Remove(task.Category);
-                }
             }
             else
             {
                 completedTasks.Remove(task);
-                if (!completedTasks.Any(t => t.Category.CategoryName == task.Category.CategoryName))
-                {
-                    completedtaskCategories.Remove(task.Category);
-                }
             }
-
+            SetData();
         }
 
         private void DoneButton_OnClick(object sender, RoutedEventArgs e)
@@ -90,14 +99,14 @@ namespace Desktop.View
                 task.IsCompleted = true;
                 task.Color = new SolidColorBrush(Colors.Red);
                 completedTasks.Add(task);
-                if (!tasks.Any(t => t.Category.CategoryName == task.Category.CategoryName))
+                if (!tasks.Any(t => t.CategoryName == task.CategoryName))
                 {
-                    taskCategories.Remove(task.Category);
-                    completedtaskCategories.Add(task.Category);
+                    taskCategories.Remove(task.CategoryName);
+                    completedtaskCategories.Add(task.CategoryName);
                 }
                 else
                 {
-                    completedtaskCategories.Add(task.Category);
+                    completedtaskCategories.Add(task.CategoryName);
                 }
                 TaskFullContent.Visibility = Visibility.Hidden;
             }
@@ -107,17 +116,18 @@ namespace Desktop.View
                 task.IsCompleted = false;
                 task.Color = new SolidColorBrush(Colors.White);
                 tasks.Add(task);
-                if (!tasks.Any(t => t.Category.CategoryName == task.Category.CategoryName))
+                if (!tasks.Any(t => t.CategoryName == task.CategoryName))
                 {
-                    taskCategories.Add(task.Category);
+                    taskCategories.Add(task.CategoryName);
                 }
                 else
                 {
-                    taskCategories.Add(task.Category);
-                    completedtaskCategories.Remove(task.Category);
+                    taskCategories.Add(task.CategoryName);
+                    completedtaskCategories.Remove(task.CategoryName);
                 }
                 TaskFullContent.Visibility = Visibility.Visible;
             }
+            SetData();
         }
 
         private void TasksList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -146,22 +156,22 @@ namespace Desktop.View
         private void TasksButton_Click(object sender, RoutedEventArgs e)
         {
             isInHistory = false;
-            UpdateLists();
+            SetData();
         }
 
         private void CategoriesMenuClicked(object sender, SelectionChangedEventArgs e)
         {
-            ListBox listBox = (ListBox)sender;
-            TaskCategory category = (TaskCategory)listBox.SelectedItem;
             try
             {
+                ListBox listBox = (ListBox)sender;
+                string category = listBox.SelectedItem.ToString();
                 if (!isInHistory)
                 {
-                    TasksList.ItemsSource = tasks.Where(t => t.Category.CategoryName == category.CategoryName);
+                    TasksList.ItemsSource = tasks.Where(t => t.CategoryName == category);
                 }
                 else
                 {
-                    TasksList.ItemsSource = completedTasks.Where(t => t.Category.CategoryName == category.CategoryName);
+                    TasksList.ItemsSource = completedTasks.Where(t => t.CategoryName == category);
                 }
             }
             catch

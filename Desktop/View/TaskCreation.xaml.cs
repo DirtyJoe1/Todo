@@ -55,7 +55,6 @@ namespace Desktop.View
         }
         private async void CreateButton_Click(object sender, RoutedEventArgs e)
         {
-            Random random = new Random();
             TaskModel newTask = new TaskModel()
             {
                 Id = Guid.NewGuid(),
@@ -63,16 +62,12 @@ namespace Desktop.View
                 Title = Title.Text,
                 Description = Description.Text,
                 IsCompleted = false,
-                VisibleTime = date.Hour.ToString(),
+                DisplayTime = date.TimeOfDay.ToString(),
                 Color = new SolidColorBrush(Colors.White),
-                Category = new TaskCategory()
-                {
-                    CategoryName = Category.Text,
-                    Color = new SolidColorBrush(Color.FromRgb((byte)random.Next(256), (byte)random.Next(256), (byte)random.Next(256))),
-                }
+                CategoryName = Category.Text
             };
             await _repository.PostTodoAsync(newTask);
-            _mainPage.UpdateLists();
+            _mainPage.SetData();
             NavigationService?.Navigate(_mainPage);
         }
 

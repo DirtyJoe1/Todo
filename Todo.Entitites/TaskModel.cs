@@ -14,13 +14,8 @@ namespace Todo.Entitites
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsCompleted { get; set; }
-        public string VisibleTime { get; set; }
+        public string DisplayTime { get; set; }
         public SolidColorBrush Color { get; set; }
-        public TaskCategory Category { get; set; }
-    }
-    public class TaskCategory
-    {
         public string CategoryName { get; set; }
-        public SolidColorBrush Color { get; set; }
     }
 }
