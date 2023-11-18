@@ -28,13 +28,21 @@ namespace Desktop.View
     /// 
     public partial class LoginPage : Page
     {
+        Repository.Repository repository = new Repository.Repository();
         public LoginPage()
         {
             InitializeComponent();
+            Loaded += LoginPage_Loaded;
+        }
+        private void LoginPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (repository.ValidateToken())
+            {
+                NavigationService?.Navigate(new MainEmptyPage(repository));
+            }
         }
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            var repository = new Repository.Repository();
             var login = new LoginModelDto
             {
                 Email = Email.Text,
@@ -51,10 +59,9 @@ namespace Desktop.View
                 MessageBox.Show("Пользователя не существует");
             }
         }
-
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new RegistrationPage());
+            NavigationService?.Navigate(new RegistrationPage(repository));
         }
     }
 }

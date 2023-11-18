@@ -22,9 +22,11 @@ namespace Desktop.View
     /// </summary>
     public partial class RegistrationPage : Page
     {
-        public RegistrationPage()
+        Repository.Repository repository;
+        public RegistrationPage(Repository.Repository repository)
         {
             InitializeComponent();
+            this.repository = repository;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -40,7 +42,6 @@ namespace Desktop.View
                 Email = RegisterEmail.Text,
                 Password = RegisterPassword.Password,
             };
-            var repository = new Repository.Repository();
             var response = await repository.PostUserRegistrationAsync(registration);
             if (response.IsSuccessStatusCode)
             {

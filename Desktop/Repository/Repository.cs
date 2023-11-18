@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,10 +25,72 @@ namespace Desktop.Repository
         private readonly string FileUrl = "api/user/photo/";
         private readonly string UserUrl = "api/user";
         private readonly HttpClient _httpClient;
+        private readonly string connectionString = "Server=79.174.94.77;Port=3306;Database=TodoApp;Uid=admin;Pwd=123qweasdzxc;";
         private static string Token;
         public Repository()
         {
             _httpClient = GetHttpClient();
+            Token = GetToken();
+            if (!string.IsNullOrEmpty(Token))
+            {
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+            }
+        }
+        public string GetToken()
+        {
+            string token = null;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT Token FROM Tokens";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        if (!reader.IsDBNull(reader.GetOrdinal("Token")))
+                        {
+                            token = reader.GetString("Token");
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return token;
+        }
+        public bool ValidateToken()
+        {
+            if(Token != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public void InsertToken(string token)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "INSERT INTO Tokens (token) VALUES (@token) ON DUPLICATE KEY UPDATE token = @token";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@token", token);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        public void DeleteToken()
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "DELETE FROM Tokens";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
         public async Task<HttpResponseMessage> PostUserLoginAsync(LoginModelDto login)
         {
@@ -34,6 +98,7 @@ namespace Desktop.Repository
             dynamic responseData = Newtonsoft.Json.JsonConvert.DeserializeObject(await responseMessage.Content.ReadAsStringAsync());
             Token = responseData.data.access_token;
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+            InsertToken(Token);
             return responseMessage;
         }
         public async Task<HttpResponseMessage> PostUserRegistrationAsync(RegistrationModelDto register)
@@ -42,6 +107,7 @@ namespace Desktop.Repository
             dynamic responseData = Newtonsoft.Json.JsonConvert.DeserializeObject(await responseMessage.Content.ReadAsStringAsync());
             Token = responseData.access_token;
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+            InsertToken(Token);
             return responseMessage;
         }
         public async Task<string> GetPhoto(string id)

@@ -63,6 +63,17 @@ namespace Desktop.View
             SetUsername();
             SetData();
         }
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!ExitButton.IsVisible)
+            {
+                ExitButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ExitButton.Visibility = Visibility.Collapsed;
+            }
+        }
         public async void DeleteTask(TaskModel task)
         {
             var response = await _repository.DeleteTodo(task.Id);
@@ -183,6 +194,16 @@ namespace Desktop.View
             {
 
             }
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            _repository.DeleteToken();
+            NavigationService.Navigate(new LoginPage());
+        }
+        private void ExitButton_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
