@@ -32,18 +32,22 @@ namespace Desktop.View
         public bool isInHistory = false;
         public async void SetData()
         {
-            tasks = Mapper.DeMapTodo(await _repository.GetTodosAsync());
+            tasks = await FetchTodosAsync();
             TasksList.ItemsSource = tasks;
+            UpdateTaskCategories();
+        }
+        private async Task<ObservableCollection<TaskModel>> FetchTodosAsync()
+        {
+            return Mapper.DeMapTodo(await _repository.GetTodosAsync());
+        }
+        private void UpdateTaskCategories()
+        {
             foreach (var i in tasks)
             {
                 if (!taskCategories.Contains(i.CategoryName))
                 {
                     taskCategories.Add(i.CategoryName);
                 }
-                //else if (taskCategories.All(cat => cat.Count() == 0)
-                //{
-
-                //}
             }
             MenuList.ItemsSource = taskCategories;
         }
@@ -70,6 +74,7 @@ namespace Desktop.View
             {
                 MessageBox.Show(response.StatusCode.ToString());
             }
+            taskCategories.Remove(task.CategoryName);
             SetData();
         }
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)

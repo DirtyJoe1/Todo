@@ -18,8 +18,10 @@ namespace Desktop
         }
         protected HttpClient GetHttpClient()
         {
-            var client = new HttpClient();
-            client.BaseAddress = _baseUri;
+            var client = new HttpClient
+            {
+                BaseAddress = _baseUri
+            };
             return client;
         }
     }
