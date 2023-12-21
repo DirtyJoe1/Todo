@@ -1,16 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Security.Principal;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using Todo.Entitites;
 using Todo.Entitites.DataTransferObjects;
 
