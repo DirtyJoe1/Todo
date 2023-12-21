@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace Desktop
 {
-    internal class Validator
+    public static class Validator
     {
         public static bool ValidatePassword(string password)
         {
@@ -17,7 +17,7 @@ namespace Desktop
         }
         public static bool ValidateEmail(string email)
         {
-            return (Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"));
+            return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
         }
         public static bool ValidateName(string name)
         {

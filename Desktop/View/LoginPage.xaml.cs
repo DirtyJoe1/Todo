@@ -18,7 +18,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Todo.Entitites;
-using Windows.UI.Xaml.Media.Animation;
 
 namespace Desktop.View
 {
