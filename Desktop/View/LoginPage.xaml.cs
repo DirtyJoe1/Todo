@@ -43,21 +43,6 @@ namespace Desktop.View
         }
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            var login = new LoginModelDto
-            {
-                Email = Email.Text,
-                Password = Password.Password,
-
-            };
-            HttpResponseMessage response = await repository.PostUserLoginAsync(login);
-            if (response.IsSuccessStatusCode)
-            {
-                NavigationService?.Navigate(new MainEmptyPage(repository));
-            }
-            else
-            {
-                MessageBox.Show("Пользователя не существует");
-            }
         }
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
